@@ -1,6 +1,5 @@
 import math
 
-
 class Stop:
     def __init__(self, current_loc) -> None:
         self.current_loc = current_loc
@@ -9,6 +8,9 @@ class Stop:
     
     def add_new_landmark(self, landmark):
         self.landmarks.append(landmark)
+    
+    def clear_landmarks(self):
+        self.landmarks = []
     
     def get_current_loc(self):
         return self.current_loc
@@ -55,6 +57,7 @@ for case in inputs:
     stops = [Stop(stop) for stop in s]
     
     last_stops_loc = [stop.get_current_loc() for stop in stops]
+    final = []
     optimal_found = False
     while not optimal_found:
         for loc in l:
@@ -62,11 +65,12 @@ for case in inputs:
         
         for stop in stops:
             stop.set_current_loc(stop.get_new_loc())
+            stop.clear_landmarks()
         
         optimal_found = True
         for i, last_stop in enumerate(last_stops_loc):
-            x, y = tuple([round(float(num), 3) for num in stops[i].get_current_loc().split(' ')])
-            las_x, las_y = tuple([round(float(num), 3) for num in last_stop.split(' ')])
+            x, y = tuple([round(float(num), 2) for num in stops[i].get_current_loc().split(' ')])
+            las_x, las_y = tuple([round(float(num), 2) for num in last_stop.split(' ')])
             r_ls = f'{las_x} {las_y}'
             r_s = f'{x} {y}'
             if r_s != r_ls:

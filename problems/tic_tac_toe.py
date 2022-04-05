@@ -54,7 +54,7 @@ class TicTacToe:
         if board.did_win() == 2:
             return -1# + depth
         if board.did_win() == 3:
-            return 0
+            return 0# + depth
         
         
         if board.get_turn():
