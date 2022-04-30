@@ -4,7 +4,7 @@ def calc_ham_distance(w1, w2):
         if w1_char != w2[i]:
             count += 1
     return count
-        
+
 
 n_inputs = int(input())
 
